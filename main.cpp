@@ -30,7 +30,7 @@ int cadastrar_paciente(const paciente &dados){
 }
 
 int atender_paciente(const atendimento &atendimento){
-
+    //code
 }
 
 int informacoes(){
@@ -68,14 +68,6 @@ int main(){
 
     }
 
-
-
     return 0;
 
 }
-
-
-
-
-
-
