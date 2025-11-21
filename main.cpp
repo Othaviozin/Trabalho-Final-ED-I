@@ -141,6 +141,11 @@ void informacoes(){
     std::cout << " Total de pacientes atendidos " << atendimentos << std::endl;
 }
 
+void texto_menu(){
+    std::cout << "Digite a opçao desejada" << std::endl;
+    std::cout << "C - Cadastrar nova senha | A - Atender um paciente | D - Mostrar informacoes das filas | Q - Sair" << std::endl;
+}
+
 
 
 int main(){
@@ -149,18 +154,14 @@ int main(){
     paciente dados;
     atendimento atendimento;
     
-    std::cout << "Sistema de Triagem. Comandos (V, A, D, B sao as prioridades):" << std::endl;
-    std::cout << "C <senha> <prioridade> <hh> <mm> (Ex: C P001 V 10 30)" << std::endl;
-    std::cout << "A <hh> <mm> (Atender paciente. Ex: A 11 00)" << std::endl;
-    std::cout << "D (Exibir o tamanho das filas)" << std::endl;
-    std::cout << "Q (Sair)" << std::endl;
-    std::cout << "--------------------------------------------------------" << std::endl;
-    
+    texto_menu();
     
     while(std::cin >> x && x!='Q'){ 
         switch (x)
         {
         case 'C':
+            std::cout << "Para cadastrar o pciente digite na seguinte ordem: <senha> <prioridade> <hora> <minutos>" << std::endl;
+            std::cout << "As filas de prioridade sao: V - Emergencia | A - Urgente | D - Pouco Urgente | B Nao Urgente" << std::endl;
             std::cin >> dados.senha >> dados.prioridade >> dados.hh >> dados.mm;
 
             dados.total_minutos = dados.hh * 60 + dados.mm;
@@ -171,9 +172,11 @@ int main(){
             }   
             cadastrar_paciente(dados);
             calcular_pico_lotacao();
+            texto_menu();
             break;
             
         case 'A':
+            std::cout << "Para atender um paciente digite o horario do atendimento no formato: <hora> <minutos> " << std::endl;
             std::cin >> atendimento.hh >> atendimento.mm;
             atendimento.total_minutos = atendimento.hh * 60 + atendimento.mm;
 
@@ -182,10 +185,12 @@ int main(){
                 break;
             }
             atender_paciente(atendimento, atendimentos);
+            texto_menu();
             break;
             
         case 'D':
             informacoes();
+            texto_menu();
             break;
         
         default:
